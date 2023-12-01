@@ -1000,8 +1000,8 @@ eightbqfhnmvqsoneninezbrzcqkz4ftv
 1eightcrcjcbdthreebscfpvznqfrj6
 `;
 
-const calc = (text: string): number => {
-  return text
+const calc = (input: string) => {
+  return input
     .replace(/[a-zA-Z]/gm, '')
     .split(/\n/)
     .reduce((acc, line) => (acc += Number(`${line[0]}${line.at(-1)}`) || 0), 0);
@@ -1010,6 +1010,14 @@ const calc = (text: string): number => {
 const result = calc(input);
 
 const dict = {
+  oneight: 'oneeight',
+  twone: 'twoone',
+  threeight: 'threeeight',
+  fiveight: 'fiveeight',
+  sevenine: 'sevennine',
+  eightwo: 'eighttwo',
+  eighthree: 'eightthree',
+  nineight: 'nineeight',
   one: 1,
   two: 2,
   three: 3,
@@ -1021,12 +1029,15 @@ const dict = {
   nine: 9,
 };
 
-const newInput = Object.entries(dict).reduce(
-  (acc, [letter, number]) =>
-    acc.replace(new RegExp(letter, 'gm'), number.toString()),
-  input,
-);
+const transformInput = (input: string) => {
+  return Object.entries(dict).reduce(
+    (acc, [letter, number]) =>
+      acc.replace(new RegExp(letter, 'gm'), number.toString()),
+    input,
+  );
+};
 
+const newInput = transformInput(input);
 const result2 = calc(newInput);
 
-console.log(result);
+console.log(newInput, result, result2);
