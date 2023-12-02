@@ -46,7 +46,17 @@ const calcResult = (dict: Dict): number => {
   );
 };
 
+const calcPower = (dict: Dict): number => {
+  return Object.values(dict).reduce(
+    (acc, possibilities) =>
+      (acc += possibilities.blue * possibilities.green * possibilities.red),
+    0,
+  );
+};
+
 const dict = getDict(input);
 const result = calcResult(dict);
 
-console.log(result);
+const power = calcPower(dict);
+
+console.log(result, power);
